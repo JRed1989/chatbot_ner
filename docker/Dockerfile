@@ -4,10 +4,11 @@ RUN apt-get update && apt-get install -y nginx python-dev python-pip build-essen
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y sudo
 RUN pip install pip --upgrade
 
-COPY install_CRF.sh install.sh java.sh elasticsearch.sh /root/
+COPY install_CRF.sh install.sh java.sh elasticsearch.sh initial_datastore_setup.sh  /root/
 RUN /root/java.sh && /root/elasticsearch.sh
 RUN /root/install.sh
-RUN bash /root/install_CRF.sh
+RUN /root/install_CRF.sh
+RUN /root/initial_datastore_setup.sh
 
 ADD start.sh /root/start.sh
 CMD bash /root/start.sh

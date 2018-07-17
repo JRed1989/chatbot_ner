@@ -88,11 +88,12 @@
 
 -    We have added the necessary information in configuration file. If you want change the configuration settings open and edit the `config` file (with your favorite text editor) and fill in the required settings to connect to the datastore (elasticsearch). See the [DataStore Settings Environment Variables](/docs/datastore_variables.md) section for details on these variables.
 
-8. Run initial_setup.py to install required nltk corpora and populate DataStore with data from csv files present at `data/entity_data/`.
+8. Run setup scripts to install required nltk corpora and populate DataStore with data from csv files present at `data/entity_data/`.
 
 
 ```shell
    $ python initial_setup.py
+   $ python initial_datastore_setup.py
 ```
 
 You can add your own entities using such csv files. See [CSV file structure and adding new entities to DataStore](/docs/adding_entities.md) section for more details.
