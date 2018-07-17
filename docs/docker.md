@@ -1,5 +1,9 @@
 # Setup of Chatbot NER via. Docker
 
+> CAUTION: Dockerfile invokes `install.sh`  which in turn calls
+> `python initial_setup.py` which **DELETES and RECREATES Datastore from chatbot_ner/data/entity_data**
+> If you intend to use some remote elasticsearch instance or index data manually and don't want your data to be deleted while building the image please modify `initial_setup.py`
+
 Following are the steps to create the Docker image and run NER via Docker.
 
 1. Install Docker 
