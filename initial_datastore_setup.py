@@ -1,11 +1,10 @@
 #!/usr/bin/env python
 import os
-from chatbot_ner.config import CHATBOT_NER_DATASTORE
+
 from datastore import DataStore
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-print "Config", CHATBOT_NER_DATASTORE
 db = DataStore()
 print "Setting up DataStore for Chatbot NER"
 print "Deleting any stale data ..."
