@@ -152,7 +152,6 @@ Following are the steps to create the Docker image and run NER via Docker.
    **NOTE:**
 
    - You can also have a look at our [API call document](/docs/api_call.md) to test and use different NER functionalities.
-   - To access GUI, go to http://localhost:80/gui/ 
 
    ​
 
