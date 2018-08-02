@@ -6,3 +6,12 @@ def structure_es_result(result):
     for value in key_list:
         structured_result.append({'value': value, 'variants': result[value]})
     return structured_result
+
+
+def structure_external_api_json(json):
+    dictionary_value = {}
+
+    for temp_dict in json:
+        dictionary_value[temp_dict['value']] = temp_dict['variants']
+
+    return dictionary_value
