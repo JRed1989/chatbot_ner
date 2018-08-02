@@ -2,6 +2,7 @@ import json
 
 from django.http import HttpResponse
 from datastore.datastore import DataStore
+from external_api.external_api_utilities import structure_es_result
 
 
 def get_entity_word_variants(request):
@@ -16,9 +17,9 @@ def get_entity_word_variants(request):
         dictionary_name = request.GET.get('dictionary_name')
         datastore_obj = DataStore()
         result = datastore_obj.get_entity_dictionary(entity_name=dictionary_name)
-        print('result', result)
+        result = structure_es_result(result)
         status = True
 
     except TypeError:
         return HttpResponse(status=500)
-    return HttpResponse(json.dumps({'status': status}), content_type='application/json')
+    return HttpResponse(json.dumps({'status': status, 'result': result}), content_type='application/json')
