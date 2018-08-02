@@ -21,4 +21,5 @@ urlpatterns = patterns('',
 
     # Mogambo Entities
     url(r'^entities/get_entity_word_variants', 'external_api.api.get_entity_word_variants'),
+    url(r'^entities/update_dictionary', 'external_api.api.update_dictionary'),
 )
