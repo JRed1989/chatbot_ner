@@ -37,9 +37,8 @@ def update_dictionary(request):
     word_entity_info = json.loads(request.body)
     dictionary_name = word_entity_info.get('dictionary_name')
     dictionary_data = word_entity_info.get('dictionary_data')
-    dictionary_value = structure_external_api_json(dictionary_data)
     datastore_obj = DataStore()
-#    status = datastore_obj.external_api_update_entity(dictionary_name=dictionary_name,
-#                                                      dictionary_data=dictionary_value)
+    status = datastore_obj.external_api_update_entity(dictionary_name=dictionary_name,
+                                                      dictionary_data=dictionary_data)
 
-    return HttpResponse(json.dumps({'status': False}), content_type='application/json')
+    return HttpResponse(json.dumps({'status': status}), content_type='application/json')
