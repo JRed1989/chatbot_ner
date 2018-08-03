@@ -33,15 +33,13 @@ def update_dictionary(request):
         request: url parameters
 
     """
-    status = False
-    try:
-        word_entity_info = json.loads(request.body)
-        dictionary_name = word_entity_info['dictionary_name']
-        dictionary_data = word_entity_info['dictionary_data']
-        datastore_obj = DataStore()
-        status = datastore_obj.external_api_update_entity(dictionary_name=dictionary_name,
-                                                          dictionary_data=dictionary_data)
-        structure_external_api_json(dictionary_data)
-    except TypeError:
-        ner_logger.debug('Error %s' % str(TypeError))
+
+    word_entity_info = json.loads(request.body)
+    dictionary_name = word_entity_info.get('dictionary_name')
+    dictionary_data = word_entity_info.get('dictionary_data')
+    datastore_obj = DataStore()
+    status = datastore_obj.external_api_update_entity(dictionary_name=dictionary_name,
+                                                      dictionary_data=dictionary_data)
+    structure_external_api_json(dictionary_data)
+
     return HttpResponse(json.dumps({'status': status}), content_type='application/json')
