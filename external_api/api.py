@@ -88,5 +88,5 @@ def get_training_data(request):
     """
     dictionary_name = request.GET.get('dictionary_name')
     datastore_obj = DataStore()
-    result = datastore_obj.get_entity_dictionary(training_config=True, entity_name=dictionary_name, training_config=True)
+    result = datastore_obj.get_entity_dictionary(training_config=True, entity_name=dictionary_name)
     return HttpResponse(json.dumps({'result': result}), content_type='application/json')

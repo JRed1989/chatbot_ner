@@ -223,6 +223,7 @@ class DataStore(object):
                                                                            ELASTICSEARCH_DOC_TYPE],
                                                                        entity_name=entity_name,
                                                                        request_timeout=request_timeout,
+                                                                       training_config=training_config,
                                                                        **kwargs)
 
         return results_dictionary

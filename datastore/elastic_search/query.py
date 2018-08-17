@@ -7,7 +7,7 @@ from ..constants import ELASTICSEARCH_SEARCH_SIZE, ELASTICSEARCH_VERSION_MAJOR, 
 log_prefix = 'datastore.elastic_search.query'
 
 
-def dictionary_query(training_config=False, connection, index_name, doc_type, entity_name, **kwargs):
+def dictionary_query(connection, index_name, doc_type, entity_name, training_config=False, **kwargs):
     """
     Get all variants data for a entity stored in the index as a dictionary
 
