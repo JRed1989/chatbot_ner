@@ -23,7 +23,10 @@ urlpatterns = patterns('',
     url(r'^entities/get_entity_word_variants', 'external_api.api.get_entity_word_variants'),
     url(r'^entities/update_dictionary', 'external_api.api.update_dictionary'),
 
-    # Transfer Dictioanry
+    # Transfer Dictionary
     url(r'^entities/transfer_entities', 'external_api.api.transfer_entities'),
+
+    # Training Data Read Write
+    url(r'^entities/update_training_data', 'external_api.api.update_training_data'),
 
 )
