@@ -255,7 +255,7 @@ def external_api_entity_update(connection, index_name, doc_type, dictionary_data
     return status
 
 
-def external_api_update_training_data(connection, index_name, doc_type, entity_name, text_list, entity_list, language_script,
+def external_api_training_data_update(connection, index_name, doc_type, entity_name, text_list, entity_list, language_script,
                                       logger, **kwargs):
     logger.debug('%s: +++ Started: external_api_entity_update() +++' % log_prefix)
     status = False

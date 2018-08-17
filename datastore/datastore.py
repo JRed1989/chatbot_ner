@@ -380,7 +380,7 @@ class DataStore(object):
 
         if self._engine == ELASTICSEARCH:
             self._check_doc_type_for_elasticsearch()
-            status = elastic_search.populate.external_api_update_training_data(connection=self._client_or_connection,
+            status = elastic_search.populate.external_api_training_data_update(connection=self._client_or_connection,
                                                                                index_name=self._store_name,
                                                                                doc_type=self._connection_settings[
                                                                                     ELASTICSEARCH_DOC_TYPE],
