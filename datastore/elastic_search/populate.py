@@ -253,3 +253,29 @@ def external_api_entity_update(connection, index_name, doc_type, dictionary_data
         logger.debug('%s: +++ Completed: add_data_elastic_search() +++' % str(ValueError))
 
     return status
+
+
+def external_api_update_training_data(connection, index_name, doc_type, entity_name, text_list, entity_list, language_script,
+                                      logger, **kwargs):
+    logger.debug('%s: +++ Started: external_api_entity_update() +++' % log_prefix)
+    status = False
+    try:
+        logger.debug('%s: +++ Started: delete_entity_by_name() +++' % log_prefix)
+        delete_entity_by_name(connection=connection, index_name=index_name, doc_type=doc_type,
+                              entity_name=entity_name, logger=logger, **kwargs)
+        logger.debug('%s: +++ Completed: delete_entity_by_name() +++' % log_prefix)
+
+        if text_list:
+            dictionary_value = structure_external_api_json(text_list)
+
+            logger.debug('%s: +++ Started: add_data_elastic_search() +++' % log_prefix)
+            add_data_elastic_search(connection=connection, index_name=index_name, doc_type=doc_type,
+                                    dictionary_key=entity_name,
+                                    dictionary_value=dictionary_value, language_script=language_script, logger=logger, **kwargs)
+            logger.debug('%s: +++ Completed: add_data_elastic_search() +++' % log_prefix)
+
+        status = True
+    except ValueError:
+        logger.debug('%s: +++ Completed: add_data_elastic_search() +++' % str(ValueError))
+
+    return status
