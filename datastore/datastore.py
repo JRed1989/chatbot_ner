@@ -372,3 +372,23 @@ class DataStore(object):
                                                                         **kwargs)
 
         return status
+
+    def external_api_update_training_data(self, entity_name, text_list, entity_list, language_script, **kwargs):
+        status = False
+        if self._client_or_connection is None:
+            self._connect()
+
+        if self._engine == ELASTICSEARCH:
+            self._check_doc_type_for_elasticsearch()
+            status = elastic_search.populate.external_api_update_training_data(connection=self._client_or_connection,
+                                                                               index_name=self._store_name,
+                                                                               doc_type=self._connection_settings[
+                                                                                    ELASTICSEARCH_DOC_TYPE],
+                                                                               logger=ner_logger,
+                                                                               entity_name=entity_name,
+                                                                               text_list=text_list,
+                                                                               entity_list=entity_list,
+                                                                               language_script=language_script,
+                                                                               **kwargs)
+
+        return status
