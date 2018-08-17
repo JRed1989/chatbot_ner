@@ -279,3 +279,25 @@ def external_api_training_data_update(connection, index_name, doc_type, entity_n
         logger.debug('%s: +++ Completed: add_data_elastic_search() +++' % str(ValueError))
 
     return status
+
+
+def add_training_data_elastic_search(connection, index_name, doc_type, entity_name, text_list, entity_list,
+                                     language_script, logger, **kwargs):
+    str_query = []
+    for text, entities in zip(text_list, entity_list):
+        query_dict = {'_index': index_name,
+                      'entity_name': entity_name,
+                      'text': text,
+                      'entities': entities,
+                      'language_script': language_script,
+                      '_type': doc_type,
+                      '_op_type': 'index'
+                      }
+        str_query.append(query_dict)
+        if len(str_query) > ELASTICSEARCH_BULK_HELPER_MESSAGE_SIZE:
+            result = helpers.bulk(connection, str_query, stats_only=True, **kwargs)
+            logger.debug('%s: \t++ %s status %s ++' % (log_prefix, entity_name, result))
+            str_query = []
+    if str_query:
+        result = helpers.bulk(connection, str_query, stats_only=True, **kwargs)
+        logger.debug('%s: \t++ %s status %s ++' % (log_prefix, entity_name, result))
