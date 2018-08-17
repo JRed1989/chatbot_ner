@@ -266,12 +266,12 @@ def external_api_training_data_update(connection, index_name, doc_type, entity_n
         logger.debug('%s: +++ Completed: delete_entity_by_name() +++' % log_prefix)
 
         if text_list:
-            dictionary_value = structure_external_api_json(text_list)
-
             logger.debug('%s: +++ Started: add_data_elastic_search() +++' % log_prefix)
-            add_data_elastic_search(connection=connection, index_name=index_name, doc_type=doc_type,
-                                    dictionary_key=entity_name,
-                                    dictionary_value=dictionary_value, language_script=language_script, logger=logger, **kwargs)
+            add_training_data_elastic_search(connection=connection, index_name=index_name, doc_type=doc_type,
+                                             entity_name=entity_name,
+                                             text_list=text_list,
+                                             entity_list=entity_list,
+                                             language_script=language_script, logger=logger, **kwargs)
             logger.debug('%s: +++ Completed: add_data_elastic_search() +++' % log_prefix)
 
         status = True
@@ -286,7 +286,7 @@ def add_training_data_elastic_search(connection, index_name, doc_type, entity_na
     str_query = []
     for text, entities in zip(text_list, entity_list):
         query_dict = {'_index': index_name,
-                      'entity_name': entity_name,
+                      'entity_data': entity_name,
                       'text': text,
                       'entities': entities,
                       'language_script': language_script,
