@@ -62,3 +62,16 @@ def transfer_entities(request):
     entity_list = entity_list_dict.get('entity_list')
     es_object.transfer_specific_entities(list_of_entities=entity_list)
     return HttpResponse(json.dumps({'status': status}), content_type='application/json')
+
+
+def update_training_data(request):
+    training_data = json.loads(request.body, strict=False)
+    text_list = training_data.get('text_list')
+    entity_list = training_data.get('entity_list')
+    entity_name = training_data.get('entity_name')
+    language_script = training_data.get('language_script')
+    datastore_obj = DataStore()
+    status = datastore_obj.external_api_update_training_data(entity_name=entity_name, entity_list=entity_list,
+                                                             text_list=text_list, language_script=language_script)
+
+    return HttpResponse(json.dumps({'status': status}), content_type='application/json')
