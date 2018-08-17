@@ -75,3 +75,19 @@ def update_training_data(request):
                                                              text_list=text_list, language_script=language_script)
 
     return HttpResponse(json.dumps({'status': status}), content_type='application/json')
+
+
+def get_training_data(request):
+    """
+    This function is used obtain the entity dictionary given the dictionary name.
+    Args:
+        request (HttpResponse): HTTP response from url
+
+    Returns:
+
+    """
+    dictionary_name = request.GET.get('dictionary_name')
+    datastore_obj = DataStore()
+    result = datastore_obj.get_entity_dictionary(entity_name=dictionary_name, training_config=True)
+    #result = structure_es_result(result)
+    return HttpResponse(json.dumps({'result': result}), content_type='application/json')
